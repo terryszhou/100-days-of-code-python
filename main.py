@@ -99,3 +99,51 @@ def love_calculator():
         print(f"Your true love match is {love_score}%")
 
 # love_calculator()
+
+def treasure_island():
+    print('''
+    *******************************************************************************
+            |                   |                  |                     |
+    _________|________________.=""_;=.______________|_____________________|_______
+    |                   |  ,-"_,=""     `"=.|                  |
+    |___________________|__"=._o`"-._        `"=.______________|___________________
+            |                `"=._o`"=._      _`"=._                     |
+    _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+    |                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+    |___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+            |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+    _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+    |                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+    |___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+    ____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+    /______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+    ____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+    /______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+    ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+    /______/______/______/______/______/______/______/______/______/______/______/_
+    *******************************************************************************
+    ''')
+    print(("Welcome to Treasure Island").upper())
+    print("Your mission is to find the treasure.")
+    left_right = input("You're at a crossroads. Where do you want to go? Type LEFT or RIGHT.\n").lower()
+    if left_right == "right":
+        print("You wandered into a forest of flesh-eating trees. Game Over.")
+    else:
+        wait_swim = input("You come to a lake. There is an island in the middle of the lake. Do you WAIT for a boat or SWIM across?\n").lower()
+        if wait_swim == "swim":
+            print("The lake is full of sleeping draught. You become sleepier and sleepier as you cross, until you sink and drown. Game Over.")
+        else:
+            ryb = input("you arrive at the island unharmed. There is a house with three doors: one RED, one YELLOW, and one BLUE. Which color do you chose?\n").lower()
+            if ryb == "blue":
+                print("You enter a room full of beasts. Game Over.")
+            elif ryb == "red":
+                print("You enter a room full of nothing. Absolutely nothing. You fall into nothingness forever. Game Over.")
+            else:
+                print("You discover a room with a golden chest in the middle. You win!")
+
+    if left_right != "left" or wait_swim != "wait" or ryb != "yellow":
+        play_again = input("Do you want to play again? YES/NO\n").lower()
+        if play_again == "yes":
+            treasure_island()
+
+# treasure_island()
