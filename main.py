@@ -64,8 +64,38 @@ def pizza_order():
     if extra_cheese == "Y": final_price += 1
 
     if size not in "SML" or add_pepperoni not in "YN" or extra_cheese not in "YN":
-        print("Looks like you ordered wrong, pardner!")
+        reorder = input("Looks like you ordered wrong, pardner! Wanna try again? Y/N\n").upper()
+        if reorder == "Y": pizza_order()
+        else: print("Seeya, loser!")
     else:
         print(f"Your final price is ${final_price}.")
 
-pizza_order()
+# pizza_order()
+
+def love_calculator():
+    print("Welcome to the Love Calculator!")
+    dict1 = {"t": 0, "r": 0, "u": 0, "e": 0}
+    dict2 = {"l": 0, "o": 0, "v": 0, "e": 0}
+    name1 = input("What is your name?\n").lower()
+    name2 = input("What is their name?\n").lower()
+
+    for i in name1:
+        if i in dict1: dict1[i] += 1
+        if i in dict2: dict2[i] += 1
+
+    for j in name2:
+        if j in dict1: dict1[j] += 1
+        if j in dict2: dict2[j] += 1
+
+    num1 = str(sum(dict1.values()))
+    num2 = str(sum(dict2.values()))
+    love_score = int(num1 + num2)
+
+    if love_score < 10 or love_score > 90:
+        print(f"Your love score is {love_score}%. You go together like Coke and Mentos.")
+    elif love_score > 40 and love_score < 50:
+        print(f"Your love score is {love_score}%. Y'all are all right together.")
+    else:
+        print(f"Your true love match is {love_score}%")
+
+# love_calculator()
