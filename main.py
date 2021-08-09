@@ -19,10 +19,11 @@ def tip_calculator():
 
 # DAY 3: CONTROL FLOW AND LOGICAL OPERATORS
 def bmi_calculator():
+    print("Welcome to the BMI calculator.")
     height = float(input("Enter your height in m: "))
     weight = float(input("Enter your weight in kg: "))
     bmi = round(weight / height ** 2)
-    
+
     print(f"Your BMI is {bmi}.")
     if bmi < 18.5: print("You are underweight.")
     elif bmi < 25: print("You have a normal weight.")
@@ -30,4 +31,17 @@ def bmi_calculator():
     elif bmi < 35: print("You are obese.")
     else: print("You are clinically obese.")
 
-bmi_calculator()
+# bmi_calculator()
+
+def leap_year():
+    print("Welcome to the Leap Year calculator.")
+    year = int(input("Which year do you want to check?\n"))
+    if year % 4 == 0:
+        if year % 100 != 0 or year % 400 == 0:
+            print(f"The year {year} is a leap year.")
+        else: 
+            print(f"The year {year} is not a leap year.")
+    else: 
+        print(f"The year {year} is not a leap year.")
+
+leap_year()
