@@ -1,4 +1,6 @@
 import random
+import hangman_art
+import hangman_words
 
 # DAY 6: PYTHON LOOPS: PYTHON FUNCTIONS AND KAREL
 # n/a; all online
@@ -62,11 +64,9 @@ def player_lives():
     word_list = ["aardvark", "baboon", "camel"]
     chosen_word = random.choice(word_list)
     lives = 6
-
     display = []
     for letter in chosen_word:
         display += "_"
-
     answer = "".join(display)
 
     print(f"I'm thinking of a word!\n{display}")
@@ -87,4 +87,31 @@ def player_lives():
             end_of_game = True
             print(f"You lose! The word was '{answer}'!")
 
-player_lives()
+# player_lives()
+
+def hangman():
+    end_of_game = False
+    chosen_word = random.choice(hangman_words.word_list)
+    lives = 6
+    display = []
+    for letter in chosen_word:
+        display += "_"
+
+    print(hangman_art.logo)
+    while end_of_game == False:
+        guess = input("Guess a letter, and I'll tell you if it's in my word!\n").lower()
+        for position, letter in enumerate(chosen_word):
+            if guess == letter:
+                display[position] = guess
+        if guess not in display:
+            lives -= 1
+        print(hangman_art.stages[lives])
+        print(display)
+        if "_" not in display:
+            end_of_game = True
+            print(f"You win! The word was '{chosen_word}'!")
+        if lives == 0:
+            end_of_game = True
+            print(f"You lose! The word was '{chosen_word}'!")
+
+hangman()
