@@ -147,3 +147,20 @@ def treasure_island():
             treasure_island()
 
 # treasure_island()
+
+# DAY 4: RANDOMIZATION AND PYTHON LISTS
+import random
+
+def coin_toss():
+    if random.randint(0,1) == 1:
+        return "Heads"
+    return "Tails"
+
+# print(coin_toss())
+
+def banker_roulette():
+    banker_list = input("Who is eating today?\n").split(", ")
+    randnum = random.randint(1, len(banker_list))
+    return f"{banker_list[randnum - 1]} is paying today."
+
+# print(banker_roulette())
