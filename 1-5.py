@@ -271,28 +271,20 @@ def password_generator():
     sym_list = list(string.punctuation)
     num_list = list(string.digits)
 
-    pass_len = int(input("How many characters would you like in your password?"))
-    sym_len = int(input("How many symbols would you like?"))
-    num_len = int(input("How many numbers?"))
+    pass_len = int(input("How many characters would you like in your password?\n"))
+    sym_len = int(input("How many symbols would you like?\n"))
+    num_len = int(input("How many numbers?\n"))
 
     password = ""
 
-    for i in range(0, pass_len - sym_len - num_len):
+    for i in range(pass_len - sym_len - num_len):
         password += random.choice(alpha_list)
-    for j in range(0, sym_len):
+    for j in range(sym_len):
         password += random.choice(sym_list)
-    for k in range(0, num_len):
+    for k in range(num_len):
         password += random.choice(num_list)
 
     shuffled_password = "".join(random.sample(password, len(password)))
     print(f"Your random password is {shuffled_password}")
 
-password_generator()
-
-
-
-    
-
-
-
-
+# password_generator()
