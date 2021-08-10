@@ -164,3 +164,25 @@ def banker_roulette():
     return f"{banker_list[randnum - 1]} is paying today."
 
 # print(banker_roulette())
+
+def treasure_map():
+    row1 = ["◼︎","◼︎","◼︎"]
+    row2 = ["◼︎","◼︎","◼︎"]
+    row3 = ["◼︎","◼︎","◼︎"]
+    map = [row1, row2, row3]
+    print("Welcome to Treasure Map!")
+    print(f"{row1}\n{row2}\n{row3}")
+    print("Where do you want to put the treasure?")
+    row_position = int(input("Which row? (1, 2, or 3)\n"))
+    col_position = int(input("Which column? (1, 2, or 3)\n"))
+    if col_position not in [1, 2, 3] or row_position not in [1, 2, 3]:
+        retry = input("Looks like you buried your treasure wrong! Try again? (Yes/No)\n").lower()
+        if retry == "yes":
+            treasure_map()
+    map[row_position - 1][col_position - 1] = "X"
+    print(f"{row1}\n{row2}\n{row3}")
+    print("Treasure buried!")
+
+treasure_map()
+
+
