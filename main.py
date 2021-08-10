@@ -227,7 +227,29 @@ def highest_score():
             highest_score = int(i)
     print(f"The highest score was {highest_score}.")
 
-highest_score()
+# highest_score()
+
+def even_adder():
+    total_sum = 0
+    for i in range(0, 100, 2):
+        total_sum += i
+    print(total_sum)
+
+# even_adder()
+
+def even_adder_2():
+    print("Welcome to the Even Number Adder!")
+    low_num = int(input("Enter your lowest number.\n"))
+    high_num = int(input("Enter your highest number.\n"))
+    total_sum = 0
+    for i in range (low_num, high_num):
+        if i % 2 == 0:
+            total_sum += i
+    print(f"The sum of all even numbers between {low_num} and {high_num} is {total_sum}.")
+
+# even_adder_2()
+    
+
 
 
 
