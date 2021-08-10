@@ -216,5 +216,18 @@ def height_calculator():
         student_count += 1
     print(f"The average height is {round(sum/student_count)}.")
 
-height_calculator()
+# height_calculator()
+
+def highest_score():
+    print("Welcome to the Highest Score Calculator!")
+    score_list = input("Enter a list of scores (ie: 78 65 89 etc)\n").split(" ")
+    highest_score = 0
+    for i in score_list:
+        if int(i) > highest_score:
+            highest_score = int(i)
+    print(f"The highest score was {highest_score}.")
+
+highest_score()
+
+
 
