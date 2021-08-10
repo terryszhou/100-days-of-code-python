@@ -1,4 +1,5 @@
 import random
+import math
 import hangman_art
 import hangman_words
 
@@ -100,6 +101,8 @@ def hangman():
     print(hangman_art.logo)
     while end_of_game == False:
         guess = input("Guess a letter, and I'll tell you if it's in my word!\n").lower()
+        if guess in display:
+            print("You've already guessed that!")
         for position, letter in enumerate(chosen_word):
             if guess == letter:
                 display[position] = guess
@@ -114,4 +117,15 @@ def hangman():
             end_of_game = True
             print(f"You lose! The word was '{chosen_word}'!")
 
-hangman()
+# hangman()
+
+# DAY 8:  FUNCTION PARAMETERS & CAESAR CIPHER
+
+def paint_calc():
+    test_h = int(input("Height of wall: "))
+    test_w = int(input("Width of wall: "))
+    coverage = 5
+    num_of_cans = math.ceil(test_h*test_w/coverage)
+    print(f"You'll need {num_of_cans} cans of paint.")
+
+paint_calc()
