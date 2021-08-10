@@ -20,7 +20,7 @@ def replace_blank():
     chosen_word = random.choice(word_list)
     display = []
     for letter in chosen_word:
-        display.append("_")
+        display += "_"
     print(f"I'm thinking of a word!\n{display}")
     guess = input("Guess a letter, and I'll tell you if it's in my word!\n").lower()
     for position, letter in enumerate(chosen_word):
@@ -28,4 +28,32 @@ def replace_blank():
             display[position] = guess
     print(display)
 
-replace_blank()
+# replace_blank()
+
+def check_win():
+    win = False
+    word_list = ["aardvark", "baboon", "camel"]
+    chosen_word = random.choice(word_list)
+
+    display = []
+    for letter in chosen_word:
+        display += "_"
+
+    print(f"I'm thinking of a word!\n{display}")
+
+    while win == False:
+        guess = input("Guess a letter, and I'll tell you if it's in my word!\n").lower()
+        for position, letter in enumerate(chosen_word):
+            if guess == letter:
+                display[position] = guess
+        print(display)
+        if "_" not in display:
+            win = True
+
+    answer = "".join(display)
+
+    if win == True:
+        print(f"You win! The word was '{answer}'!")
+
+check_win()
+
