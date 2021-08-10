@@ -11,7 +11,21 @@ def random_word():
     
     if guess_letter not in chosen_word:
         print("Nope!")
-    else:
-        print("Yes it is!")
+    else: print("Yes it is!")
 
 # random_word()
+
+def replace_blank():
+    word_list = ["aardvark", "baboon", "camel"]
+    chosen_word = random.choice(word_list)
+    display = []
+    for letter in chosen_word:
+        display.append("_")
+    print(f"I'm thinking of a word!\n{display}")
+    guess = input("Guess a letter, and I'll tell you if it's in my word!\n").lower()
+    for position, letter in enumerate(chosen_word):
+        if guess == letter:
+            display[position] = guess
+    print(display)
+
+replace_blank()
