@@ -260,7 +260,37 @@ def fizzbuzz():
         else: 
             print(i)
 
-fizzbuzz()
+# fizzbuzz()
+
+import string
+
+def password_generator():
+    print("Welcome to the PyPassword Generator!")
+
+    alpha_list = list(string.ascii_letters)
+    sym_list = list(string.punctuation)
+    num_list = list(string.digits)
+
+    pass_len = int(input("How many characters would you like in your password?"))
+    sym_len = int(input("How many symbols would you like?"))
+    num_len = int(input("How many numbers?"))
+
+    password = ""
+
+    for i in range(0, pass_len - sym_len - num_len):
+        password += random.choice(alpha_list)
+    for j in range(0, sym_len):
+        password += random.choice(sym_list)
+    for k in range(0, num_len):
+        password += random.choice(num_list)
+
+    shuffled_password = "".join(random.sample(password, len(password)))
+    print(f"Your random password is {shuffled_password}")
+
+password_generator()
+
+
+
     
 
 
