@@ -146,24 +146,36 @@ def prime_checker():
 
 def caesar_cipher():
     alpha_list = string.ascii_lowercase
+    direction = input("What do you want to do? (encode/decode)").lower()
     text = list(input("Type your message:\n").lower())
     shift = int(input("Type the shift number: "))
     answer = []
     for char in text:
         if char in alpha_list:
             pos = alpha_list.index(char)
-            if pos + shift <= 25:
-                answer.append(alpha_list[pos + shift])
+            if direction == "encode":
+                if pos + shift <= 25:
+                    answer.append(alpha_list[pos + shift])
+                else:
+                    answer.append(alpha_list[-(25 - (pos + shift))])
             else:
-                answer.append(alpha_list[-(25 - (pos + shift))])
+                if pos - shift >= 0:
+                    answer.append(alpha_list[pos - shift])
+                else:
+                    answer.append(alpha_list[25 + (pos - shift)])
         else:
             answer.append(char)
-    print("".join(answer))
+
+    if direction == "encode":
+        print(f"The encoded text is '{''.join(answer)}'.")
+    else:
+        print(f"The decoded text is '{''.join(answer)}'.")
+
+    again = input("Do you want to go again? (yes/no)").lower()
+    if again == "yes":
+        caesar_cipher()
 
 caesar_cipher()
-
-# alpha_list = string.ascii_lowercase
-# print(alpha_list[-2])
 
 
 
