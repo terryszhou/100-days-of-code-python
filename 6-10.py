@@ -1,5 +1,6 @@
 import random
 import math
+import string
 import hangman_art
 import hangman_words
 
@@ -130,17 +131,39 @@ def paint_calc():
 
 # paint_calc()
 
-def prime_num_checker():
-    print("Welcome to the Prime Number Checker!")
+def prime_checker():
     non_prime = []
-    num_input = int(input("Enter a number: "))
+    num_input = int(input("Enter a number to check if it's prime: "))
     for i in range(2, num_input):
         if num_input % i == 0:
             non_prime += str(i)
-
     if non_prime != []:
         print(f"{num_input} is NOT a prime number.")
     else:
         print(f"{num_input} is a prime number.")
 
-prime_num_checker()
+# prime_checker()
+
+def caesar_cipher():
+    alpha_list = string.ascii_lowercase
+    text = list(input("Type your message:\n").lower())
+    shift = int(input("Type the shift number: "))
+    answer = []
+    for char in text:
+        if char in alpha_list:
+            pos = alpha_list.index(char)
+            if pos + shift <= 25:
+                answer.append(alpha_list[pos + shift])
+            else:
+                answer.append(alpha_list[-(25 - (pos + shift))])
+        else:
+            answer.append(char)
+    print("".join(answer))
+
+caesar_cipher()
+
+# alpha_list = string.ascii_lowercase
+# print(alpha_list[-2])
+
+
+
