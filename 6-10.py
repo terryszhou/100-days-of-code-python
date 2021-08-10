@@ -128,4 +128,19 @@ def paint_calc():
     num_of_cans = math.ceil(test_h*test_w/coverage)
     print(f"You'll need {num_of_cans} cans of paint.")
 
-paint_calc()
+# paint_calc()
+
+def prime_num_checker():
+    print("Welcome to the Prime Number Checker!")
+    non_prime = []
+    num_input = int(input("Enter a number: "))
+    for i in range(2, num_input):
+        if num_input % i == 0:
+            non_prime += str(i)
+
+    if non_prime != []:
+        print(f"{num_input} is NOT a prime number.")
+    else:
+        print(f"{num_input} is a prime number.")
+
+prime_num_checker()
