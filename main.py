@@ -183,6 +183,28 @@ def treasure_map():
     print(f"{row1}\n{row2}\n{row3}")
     print("Treasure buried!")
 
-treasure_map()
+# treasure_map()
+
+def rock_paper_scissors():
+    print("Welcome to Rock, Paper, Scissors!")
+    player_input = input("Which do you choose? Type 'ROCK', 'PAPER', or 'SCISSORS'\n").upper()
+    computer_input = random.choice(["ROCK", "PAPER", "SCISSORS"])
+    win_state = {"ROCK":"SCISSORS", "SCISSORS":"PAPER", "PAPER":"ROCK"}
+    result = f"You chose {player_input}, and the computer chose {computer_input}."
+
+    if player_input not in ("ROCK", "PAPER", "SCISSORS"):
+        retry = input("Looks like you entered something wrong! Try again? (YES/NO)\n").upper()
+        if retry == "YES":
+            rock_paper_scissors()
+    elif computer_input == player_input:
+        print(result + " Tie!")
+    elif computer_input == win_state[player_input]:
+        print(result + " You win!")
+    else:
+        print(result + " You lose!")
+
+
+rock_paper_scissors()
+
 
 
