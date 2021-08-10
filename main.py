@@ -194,8 +194,8 @@ def rock_paper_scissors():
 
     if player_input not in ("ROCK", "PAPER", "SCISSORS"):
         retry = input("Looks like you entered something wrong! Try again? (YES/NO)\n").upper()
-        if retry == "YES":
-            rock_paper_scissors()
+        if retry == "YES": rock_paper_scissors()
+        else:  print("Goodbye!")
     elif computer_input == player_input:
         print(result + " Tie!")
     elif computer_input == win_state[player_input]:
@@ -203,8 +203,18 @@ def rock_paper_scissors():
     else:
         print(result + " You lose!")
 
+# rock_paper_scissors()
 
-rock_paper_scissors()
+# DAY 5: PYTHON LOOPS
+def height_calculator():
+    print("Welcome to the Average Height Calculator!")
+    height_list = input("Enter a list of heights (ie: 180 124 165 etc)\n").split(" ")
+    sum = 0
+    student_count = 0
+    for i in height_list:
+        sum += int(i)
+        student_count += 1
+    print(f"The average height is {round(sum/student_count)}.")
 
-
+height_calculator()
 
