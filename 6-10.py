@@ -55,5 +55,36 @@ def check_win():
     if win == True:
         print(f"You win! The word was '{answer}'!")
 
-check_win()
+# check_win()
 
+def player_lives():
+    end_of_game = False
+    word_list = ["aardvark", "baboon", "camel"]
+    chosen_word = random.choice(word_list)
+    lives = 6
+
+    display = []
+    for letter in chosen_word:
+        display += "_"
+
+    answer = "".join(display)
+
+    print(f"I'm thinking of a word!\n{display}")
+
+    while end_of_game == False:
+        guess = input("Guess a letter, and I'll tell you if it's in my word!\n").lower()
+        for position, letter in enumerate(chosen_word):
+            if guess == letter:
+                display[position] = guess
+        if guess not in display:
+            lives -= 1
+        print(display)
+        print(f"You have {lives} lives left.")
+        if "_" not in display:
+            end_of_game = True
+            print(f"You win! The word was '{answer}'!")
+        if lives == 0:
+            end_of_game = True
+            print(f"You lose! The word was '{answer}'!")
+
+player_lives()
