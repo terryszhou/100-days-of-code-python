@@ -88,6 +88,8 @@ def highest_bid():
 
 # DAY 10: FUNCTIONS WITH OUTPUTS
 def days_in_month():
+    '''Enter a year and month and return the 
+    number of days in that month of that year'''
     month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     year = int(input("Enter a year: "))
     month = int(input("Enter a month (1-12): "))
@@ -97,5 +99,25 @@ def days_in_month():
             days = 29
     return days
 
-print(days_in_month())
+# print(days_in_month())
 
+def calculator():
+    n1 = int(input("What's the first number?\n"))
+    continue_calc = True
+    while continue_calc:
+        operation = input("What's the operation? (+, -, *, /)")
+        n2 = int(input("What's the second number?\n"))
+        operations = {
+            "+": n1 + n2,
+            "-": n1 - n2,
+            "*": n1 * n2,
+            "/": n1 / n2
+        }
+        answer = operations[operation]
+        print(f"{n1} {operation} {n2} = {answer}")
+        again = input(f"Continue calculating with {answer}? (yes/no/new)\n").lower()
+        if again == "yes": n1 = answer
+        elif again == "new": calculator()
+        else: return "Bye!"
+
+print(calculator())
