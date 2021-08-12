@@ -1,3 +1,5 @@
+import random
+
 # DAY 9: DICTIONARIES, NESTING, AND THE SECRET AUCTION
 student_scores = {
     "Harry": 81,
@@ -105,8 +107,8 @@ def calculator():
     n1 = int(input("What's the first number?\n"))
     continue_calc = True
     while continue_calc:
-        operation = input("What's the operation? (+, -, *, /)")
-        n2 = int(input("What's the second number?\n"))
+        operation = input("What's the operation? (+, -, *, /)\n")
+        n2 = int(input("What's the next number?\n"))
         operations = {
             "+": n1 + n2,
             "-": n1 - n2,
@@ -120,4 +122,41 @@ def calculator():
         elif again == "new": calculator()
         else: return "Bye!"
 
-print(calculator())
+# print(calculator())
+
+def blackjack():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    game_active = True
+    play_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
+    while game_active:
+        if play_game == "y":
+            player_cards = []
+            computer_cards = []
+            for i in range (0,2):
+                player_cards.append(random.choice(cards))
+                computer_cards.append(random.choice(cards))
+        else: return
+        print(f"Your cards: {player_cards}. Current score: {sum(player_cards)}")
+        print(f"Computer's first card: {computer_cards[0]}")
+        next_card = input("Type 'y' to get another card, type 'n' to pass: ").lower()
+        if next_card == "y":
+            player_cards.append(random.choice(cards))
+        computer_cards.append(random.choice(cards))
+        if sum(player_cards) > 21 or sum(computer_cards) > 21:
+            print(f"Your final hand: {player_cards}. Final score: {sum(player_cards)}")
+            print(f"Computer's final hand: {computer_cards}. Final score: {sum(computer_cards)}")
+            if sum(player_cards) > 21:
+                print("You went over. You lose!")
+            else:
+                print("The computer went over. You win!")
+            another_game = input("Do you want to play another game of Blackjack? Type 'y' or 'n': ").lower()
+            if another_game == "y":
+                # player_cards = computer_cards = []
+                play_game = "y"
+            else: return
+
+blackjack()
+
+
+
+
