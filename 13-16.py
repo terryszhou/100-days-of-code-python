@@ -70,7 +70,82 @@ def higher_lower():
             else:
                 game_active = False
 
-higher_lower()
+# higher_lower()
+
+# DAY 15: LOCAL DEVELOPMENT ENVIRONMENTS AND COFFEE MACHINE PROJECT
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "milk": 0,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    }
+}
+
+def coffee_machine():
+    resources = {
+        "water": 300,
+        "milk": 200,
+        "coffee": 100,
+    }
+    money = 0
+    machine_on = True
+    while machine_on:
+        coffee_type = input("What would you like? (espresso/latte/cappuccino): ")
+        if coffee_type == "report":
+            for resource in resources:
+                if resource == "coffee":
+                    print(f"{resource.title()}: {resources[resource]}g")
+                else:
+                    print(f"{resource.title()}: {resources[resource]}ml")
+            print(f"Money: ${money}")
+        else:
+            insufficient = []
+            for item in MENU[coffee_type]["ingredients"]:
+                if MENU[coffee_type]["ingredients"][item] > resources[item]:
+                    insufficient.append(item)
+                    print(f"Sorry, there is not enough {item}.")
+                    machine_on = False
+            if insufficient == []:
+                print("Please insert coins.")
+                quarters = int(input("How many quarters?: "))
+                dimes = int(input("How many dimes?: "))
+                nickels = int(input("How many nickels?: "))
+                pennies = int(input("How many pennies?: "))
+                user_money = quarters*.25 + dimes*.1 + nickels*.05 + pennies*.01
+                if user_money < MENU[coffee_type]["cost"]:
+                    print("Sorry, that's not enough money. Money refunded.")
+                    machine_on = False
+                else:
+                    for resource in resources:
+                        resources[resource] -= MENU[coffee_type]["ingredients"][resource]
+                    money += MENU[coffee_type]["cost"]
+                    if user_money - money != 0:
+                        print(f"Here is ${'{:.2}'.format(user_money - money)} in change.")
+                    print(f"Here is your {coffee_type}. Enjoy!")
+
+coffee_machine()
+
+
+
 
 
 
