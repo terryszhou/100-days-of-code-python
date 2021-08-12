@@ -1,4 +1,5 @@
 import random
+from typing import AsyncContextManager
 
 # DAY 9: DICTIONARIES, NESTING, AND THE SECRET AUCTION
 student_scores = {
@@ -133,7 +134,7 @@ def blackjack():
         if play_game == "y":
             player_cards = []
             computer_cards = []
-            for i in range (0,2):
+            for _ in range(2):
                 player_cards.append(random.choice(cards))
                 computer_cards.append(random.choice(cards))
         else: return
@@ -152,12 +153,43 @@ def blackjack():
                 print("The computer went over. You win!")
             another_game = input("Do you want to play another game of Blackjack? Type 'y' or 'n': ").lower()
             if another_game == "y":
-                # player_cards = computer_cards = []
                 play_game = "y"
             else: return
 
-blackjack()
+# blackjack()
 
+# DAY 12: SCOPE & NUMBER GUESSING GAME
+def guess_number():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thining of a number between 1 and 100.")
+    game_active = True
+    num = random.randint(1,100)
+    difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
+    if difficulty == "easy": 
+        attempts_left = 10
+    else: 
+        attempts_left = 5
+    while game_active:
+        print(f"You have {attempts_left} attempts remaining to guess the number.")
+        guess = int(input("Make a guess: "))
+        if guess > num:
+            attempts_left -= 1
+            print("Too high.\nGuess again.")
+        elif guess < num:
+            attempts_left -= 1
+            print("Too low.\nGuess again.")
+        elif guess == num:
+            print(f"You got it! The answer was {num}.")
+            game_active = False
+        if attempts_left == 0:
+            print(f"You're out of guesses! The answer was {num}.")
+            game_active = False
+        if game_active == False:
+            another_game = input("Do you want to play another game? Type 'yes' or 'no': ").lower()
+            if another_game == "yes":
+                guess_number()
+            else: return
 
+guess_number()
 
 
