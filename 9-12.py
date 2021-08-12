@@ -124,6 +124,7 @@ def calculator():
 
 # print(calculator())
 
+# DAY 11: BLACKJACK
 def blackjack():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     game_active = True
