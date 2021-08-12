@@ -190,6 +190,4 @@ def guess_number():
                 guess_number()
             else: return
 
-guess_number()
-
-
+# guess_number()
