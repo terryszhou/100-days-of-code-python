@@ -145,9 +145,6 @@ def coffee_machine():
 # coffee_machine()
 
 # DAY 16: OBJECT-ORIENTED PROGRAMMING (OOP)
-# import turtle
-
-
 
 
 
