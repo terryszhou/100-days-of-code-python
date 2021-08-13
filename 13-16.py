@@ -116,7 +116,7 @@ def coffee_machine():
                     print(f"{resource.title()}: {resources[resource]}g")
                 else:
                     print(f"{resource.title()}: {resources[resource]}ml")
-            print(f"Money: ${money}")
+            print(f"Money: ${money:.2f}")
         else:
             insufficient = []
             for item in MENU[coffee_type]["ingredients"]:
@@ -138,12 +138,14 @@ def coffee_machine():
                     for resource in resources:
                         resources[resource] -= MENU[coffee_type]["ingredients"][resource]
                     money += MENU[coffee_type]["cost"]
-                    if user_money - money != 0:
-                        print(f"Here is ${'{:.2}'.format(user_money - money)} in change.")
+                    if user_money - MENU[coffee_type]["cost"] != 0:
+                        print(f"Here is ${user_money - MENU[coffee_type]['cost']:.2f} in change.")
                     print(f"Here is your {coffee_type}. Enjoy!")
 
-coffee_machine()
+# coffee_machine()
 
+# DAY 16: OBJECT-ORIENTED PROGRAMMING (OOP)
+# import turtle
 
 
 
