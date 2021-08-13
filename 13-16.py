@@ -145,6 +145,46 @@ def coffee_machine():
 # coffee_machine()
 
 # DAY 16: OBJECT-ORIENTED PROGRAMMING (OOP)
+# from turtle import Turtle, Screen
+# timmy = Turtle()
+# timmy.shape('turtle')
+# timmy.color('red')
+# timmy.fd(100)
 
+# my_screen = Screen()
+# my_screen.exitonclick()
 
+# from prettytable import PrettyTable
+
+# poke_table = PrettyTable(["Pokemon Name", "Type"])
+# poke_table.add_row(["Pikachu", "Electric"])
+# poke_table.add_row(["Squirtle", "Water"])
+# poke_table.add_row(["Charmander", "Fire"])
+# poke_table.align = "l"
+
+# print(poke_table)
+
+from menu import Menu, MenuItem
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
+
+menu = Menu()
+coffee_maker = CoffeeMaker()
+money_machine = MoneyMachine()
+
+def oop_coffee_machine():
+    machine_on = True
+    while machine_on:
+        coffee_type = input(f"What would you like? ({menu.get_items()}): ")
+        if coffee_type == "report":
+            coffee_maker.report()
+            money_machine.report()
+        else:
+            if coffee_maker.is_resource_sufficient(menu.find_drink(coffee_type)) == False:
+                machine_on = False
+            else:
+                money_machine.make_payment(menu.find_drink(coffee_type).cost)
+                coffee_maker.make_coffee(menu.find_drink(coffee_type))
+
+oop_coffee_machine()
 
