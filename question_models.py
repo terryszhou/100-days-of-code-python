@@ -1,3 +1,9 @@
+class Question:
+    '''Quiz Question Class'''
+    def __init__(self, text, answer):
+        self.text = text
+        self.answer = answer
+
 class QuizBrain:
     '''Quiz Brain Class'''
     def __init__(self, question_list):

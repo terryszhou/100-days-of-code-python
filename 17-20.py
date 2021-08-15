@@ -18,8 +18,7 @@ user_1.follow(user_2)
 # print(user_1.following, user_2.followers)
 
 from question_data import question_data
-from question_model import Question
-from quiz_brain import QuizBrain
+from question_models import Question, QuizBrain
 
 question_bank = []
 for i in question_data:
