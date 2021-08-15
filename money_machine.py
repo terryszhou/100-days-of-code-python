@@ -5,7 +5,7 @@ class MoneyMachine:
     COIN_VALUES = {
         "quarters": 0.25,
         "dimes": 0.10,
-        "nickles": 0.05,
+        "nickels": 0.05,
         "pennies": 0.01
     }
 
@@ -29,7 +29,8 @@ class MoneyMachine:
         self.process_coins()
         if self.money_received >= cost:
             change = round(self.money_received - cost, 2)
-            print(f"Here is {self.CURRENCY}{change:.2f} in change.")
+            if change > 0:
+                print(f"Here is {self.CURRENCY}{change:.2f} in change.")
             self.profit += cost
             self.money_received = 0
             return True

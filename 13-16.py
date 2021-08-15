@@ -164,7 +164,7 @@ def coffee_machine():
 
 # print(poke_table)
 
-from menu import Menu, MenuItem
+from menu import Menu
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
@@ -175,16 +175,16 @@ money_machine = MoneyMachine()
 def oop_coffee_machine():
     machine_on = True
     while machine_on:
-        coffee_type = input(f"What would you like? ({menu.get_items()}): ")
-        if coffee_type == "report":
+        my_choice = input(f"What would you like? ({menu.get_items()}): ")
+        if my_choice == "off":
+            machine_on = False
+        elif my_choice == "report":
             coffee_maker.report()
             money_machine.report()
         else:
-            if coffee_maker.is_resource_sufficient(menu.find_drink(coffee_type)) == False:
-                machine_on = False
-            else:
-                money_machine.make_payment(menu.find_drink(coffee_type).cost)
-                coffee_maker.make_coffee(menu.find_drink(coffee_type))
+            my_coffee = menu.find_drink(my_choice)
+            if coffee_maker.is_resource_sufficient(my_coffee):
+                if money_machine.make_payment(my_coffee.cost):
+                    coffee_maker.make_coffee(my_coffee)
 
 oop_coffee_machine()
-
