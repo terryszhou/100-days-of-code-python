@@ -72,15 +72,38 @@ def random_walk(num_walks):
 # random_walk(50)
 
 def spirograph(turn_degree):
+    timmy.hideturtle()
     timmy.speed("fastest")
     for _ in range(int(360/turn_degree)):
         random_color()
         timmy.circle(100)
         timmy.setheading(timmy.heading() + turn_degree)
 
-spirograph(6)
+# spirograph(6)
 
+import colorgram
 
+color_list = [(54, 39, 31), (56, 34, 40), (142, 55, 83), (203, 74, 114), (242, 220, 74), (231, 148, 85), (129, 37, 63), (71, 85, 139), (249, 242, 222), (109, 184, 129), (69, 107, 72), (128, 86, 54), (117, 151, 207), (38, 40, 58), (208, 119, 159), (88, 118, 184), (238, 95, 45), (35, 52, 33), (82, 157, 102), (208, 244, 216), (54, 57, 89), (49, 75, 46), (81, 73, 28), (165, 145, 63), (105, 44, 33), (148, 218, 163), (244, 223, 239), (243, 153, 184), (214, 226, 245), (158, 184, 237)]
+# colors = colorgram.extract('image.jpg', 30)
+# for color in colors:
+#     color_list.append((color.rgb[0],color.rgb[1],color.rgb[2]))
+# print(color_list)
+
+def hirsch_painting():
+    timmy.speed("fastest")
+    timmy.penup()
+    for i in range(0,10):
+        timmy.setpos(-225,-250 + 50*i)
+        for _ in range(10):
+            timmy.pendown()
+            timmy.color(choice(color_list))
+            timmy.begin_fill()
+            timmy.circle(10)
+            timmy.end_fill()
+            timmy.penup()
+            timmy.forward(50)
+
+# hirsch_painting()
 
 screen.exitonclick()
 
