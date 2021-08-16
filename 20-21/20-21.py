@@ -18,9 +18,13 @@ def snake_game():
     game_is_on = True
     while game_is_on:
         screen.update()
-        time.sleep(1)
-        for snek in snek_list:
-            snek.forward(20)
+        time.sleep(0.1)
+        for seg_num in range(len(snek_list) - 1, 0, -1):
+            new_x = snek_list[seg_num - 1].xcor()
+            new_y = snek_list[seg_num - 1].ycor()
+            snek_list[seg_num].goto(new_x, new_y)
+        snek_list[0].forward(20)
+        snek_list[0].left(90)
 
 
 snake_game()
