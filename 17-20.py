@@ -36,7 +36,7 @@ def quiz_game():
 
 # DAY 18: TURTLE & THE GRAPHICAL USER INTERFACE
 from turtle import Turtle, Screen
-from random import random, randrange, choice
+from random import randint, randrange, choice
 
 timmy = Turtle()
 screen = Screen()
@@ -106,30 +106,68 @@ def hirsch_painting():
 # hirsch_painting()
 
 # DAY 19: INSTANCES, STATE, AND HIGHER ORDER FUNCTIONS
-def move_forward():
-    timmy.forward(10)
 
-def move_backward():
-    timmy.backward(10)
+def etch_a_sketch():
+    def move_forward():
+        timmy.forward(10)
 
-def turn_left():
-    timmy.setheading(timmy.heading() + 10)
+    def move_backward():
+        timmy.backward(10)
 
-def turn_right():
-    timmy.setheading(timmy.heading() - 10)
+    def turn_left():
+        timmy.setheading(timmy.heading() + 10)
 
-def clear():
-    timmy.clear()
-    timmy.penup()
-    timmy.home()
-    timmy.pendown()
+    def turn_right():
+        timmy.setheading(timmy.heading() - 10)
 
-screen.listen()
-screen.onkey(key="w", fun=move_forward)
-screen.onkey(key="a", fun=turn_left)
-screen.onkey(key="s", fun=move_backward)
-screen.onkey(key="d", fun=turn_right)
-screen.onkey(key="c", fun=clear)
+    def clear():
+        timmy.clear()
+        timmy.penup()
+        timmy.home()
+        timmy.pendown()
+
+    screen.listen()
+    screen.onkey(key="w", fun=move_forward)
+    screen.onkey(key="a", fun=turn_left)
+    screen.onkey(key="s", fun=move_backward)
+    screen.onkey(key="d", fun=turn_right)
+    screen.onkey(key="c", fun=clear)
+
+# etch_a_sketch()
+
+def turtle_race():
+    is_race_on = False
+    timmy.hideturtle()
+    screen.setup(width=500, height=400)
+    user_bet = screen.textinput(title="Make Your Bet", prompt="Which turtle will win the race? Enter a color: ")
+    colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+    all_turtles = []
+    for turtle_index in range(0,6):
+        new_turtle = Turtle(shape="turtle")
+        new_turtle.color(colors[turtle_index])
+        new_turtle.penup()
+        new_turtle.goto(x=-230, y=-100 + turtle_index*42)
+        all_turtles.append(new_turtle)
+    
+    if user_bet:
+        is_race_on = True
+    
+    while is_race_on:
+        for turtle in all_turtles:
+            if turtle.xcor() > 230:
+                is_race_on = False
+                winning_color = turtle.pencolor()
+                if winning_color == user_bet:
+                    print(f"You've won! The {winning_color} turtle is the winner!")
+                else:
+                    print(f"You've lost! The {winning_color} turtle is the winner!")
+            else:
+                turtle.forward(randint(0,10))
+
+turtle_race()
+
+
+
 
 screen.exitonclick()
 
