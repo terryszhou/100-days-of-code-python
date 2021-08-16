@@ -149,9 +149,8 @@ def turtle_race():
         new_turtle.goto(x=-230, y=-100 + turtle_index*42)
         all_turtles.append(new_turtle)
     
-    if user_bet:
-        is_race_on = True
-    
+    if user_bet: is_race_on = True
+
     while is_race_on:
         for turtle in all_turtles:
             if turtle.xcor() > 230:
@@ -164,10 +163,7 @@ def turtle_race():
             else:
                 turtle.forward(randint(0,10))
 
-turtle_race()
-
-
-
+# turtle_race()
 
 screen.exitonclick()
 

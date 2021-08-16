@@ -1,5 +1,4 @@
 import random
-from typing import AsyncContextManager
 
 # DAY 9: DICTIONARIES, NESTING, AND THE SECRET AUCTION
 student_scores = {

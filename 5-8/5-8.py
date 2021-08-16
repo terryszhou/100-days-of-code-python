@@ -61,8 +61,6 @@ def fizzbuzz():
 
 # fizzbuzz()
 
-import string
-
 def password_generator():
     print("Welcome to the PyPassword Generator!")
 
