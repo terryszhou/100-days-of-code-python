@@ -43,6 +43,6 @@ def snake_game():
                 game_is_on = False
                 scoreboard.game_over()
 
-snake_game()
+# snake_game()
 
 screen.exitonclick()
