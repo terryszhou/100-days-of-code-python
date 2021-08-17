@@ -10,6 +10,9 @@ screen.tracer(0)
 turt = Turt()
 
 def turtle_crosser():
+    screen.listen()
+    screen.onkey(turt.up, "Up")
+    screen.onkey(turt.down, "Down")
     game_is_on = True
     while game_is_on:
         screen.update()
