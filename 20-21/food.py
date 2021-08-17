@@ -1,5 +1,5 @@
 from turtle import Turtle
-from random import randint, random
+from random import randint
 
 class Food(Turtle):
     def __init__(self):
