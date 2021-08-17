@@ -6,8 +6,8 @@ class Animal:
         print("Inhale, exhale.")
 
 class Fish(Animal):
-    def __init__(self):
-        super().__init__()
+    def __init__(self): # Optional Code
+        super().__init__() # Optional Code
 
     def breathe(self):
         super().breathe()
