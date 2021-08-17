@@ -28,10 +28,11 @@ def snake_game():
 
         # Detect collision with food, increase score.
         if snake.head.distance(food) < 15:
+            snake.extend()
             scoreboard.increase_score()
             food.refresh()
 
-        # Detect collision with wall.
+        # Detect collision with wall, trigger Game Over.
         if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
             game_is_on = False
             scoreboard.game_over()
