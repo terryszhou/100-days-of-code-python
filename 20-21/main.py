@@ -24,8 +24,6 @@ def snake_game():
             new_y = snek_list[seg_num - 1].ycor()
             snek_list[seg_num].goto(new_x, new_y)
         snek_list[0].forward(20)
-        snek_list[0].left(90)
-
 
 snake_game()
 
