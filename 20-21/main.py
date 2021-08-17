@@ -1,4 +1,5 @@
 from turtle import Screen, Turtle
+from snake import Snake
 import time
 
 screen = Screen()
@@ -6,24 +7,19 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)
+snake = Snake()
 
 def snake_game():
-    snek_list = []
-    for i in range(0,3):
-        snek = Turtle(shape="square")
-        snek.color("white")
-        snek.penup()
-        snek.goto(0 - 20*i, 0)
-        snek_list.append(snek)
+    screen.listen()
+    screen.onkey(snake.up, "Up")
+    screen.onkey(snake.left, "Left")
+    screen.onkey(snake.down, "Down")
+    screen.onkey(snake.right, "Right")
     game_is_on = True
     while game_is_on:
         screen.update()
         time.sleep(0.1)
-        for seg_num in range(len(snek_list) - 1, 0, -1):
-            new_x = snek_list[seg_num - 1].xcor()
-            new_y = snek_list[seg_num - 1].ycor()
-            snek_list[seg_num].goto(new_x, new_y)
-        snek_list[0].forward(20)
+        snake.move()
 
 snake_game()
 

@@ -4,6 +4,7 @@ class Snake:
     '''Snake Class'''
     def __init__(self):
         self.snek_list = []
+        self.move_distance = 20
         self.create_snake()
 
     def create_snake(self):
@@ -19,4 +20,16 @@ class Snake:
             new_x = self.snek_list[seg_num - 1].xcor()
             new_y = self.snek_list[seg_num - 1].ycor()
             self.snek_list[seg_num].goto(new_x, new_y)
-        self.snek_list[0].forward(20)
+        self.snek_list[0].forward(self.move_distance)
+
+    def up(self):
+        self.snek_list[0].setheading(90)
+
+    def left(self):
+        self.snek_list[0].setheading(180)
+
+    def down(self):
+        self.snek_list[0].setheading(270)
+
+    def right(self):
+        self.snek_list[0].setheading(0)
