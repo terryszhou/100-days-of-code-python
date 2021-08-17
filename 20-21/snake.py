@@ -1,4 +1,4 @@
-from turtle import Turtle
+from turtle import Turtle, Screen
 
 class Snake:
     '''Snake Class'''
@@ -38,3 +38,24 @@ class Snake:
     def right(self):
         if self.head.heading() != 180:
             self.head.setheading(0)
+
+# class SnakeScreen:
+#     def __init__(self):
+#         self.screen = Screen()
+#         self.screen.setup(width=600, height=600)
+#         self.screen.bgcolor("black")
+#         self.screen.title("My Snake Game")
+#         self.screen.tracer(0)
+#         self.snake = Snake()
+
+#     def listen(self):
+#         self.screen.listen()
+
+#     def movement(self):
+#         self.screen.onkey(self.snake.up, "Up")
+#         self.screen.onkey(self.snake.left, "Left")
+#         self.screen.onkey(self.snake.down, "Down")
+#         self.screen.onkey(self.snake.right, "Right")
+
+#     def update(self):
+#         self.screen.update()
