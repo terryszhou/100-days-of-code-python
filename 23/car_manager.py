@@ -3,7 +3,9 @@ from random import choice, randint
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 5
+MOVE_INCREMENT = 2
+STARTING_RANGE = (choice([i for i in range(-280,281) if i not in range(-30,31)]), randint(-280,281))
+
 
 class CarManager:
     def __init__(self):
@@ -19,7 +21,8 @@ class CarManager:
         car.shapesize(stretch_wid=1, stretch_len=2)
         car.color(choice(COLORS))
         car.penup()
-        car.goto(randint(-280,281), randint(-280,281))
+        # car.goto(randint(-280,281), randint(-280,281))
+        car.goto(STARTING_RANGE)
         self.car_list.append(car)
 
     def move(self):
@@ -34,5 +37,4 @@ class CarManager:
         for car in self.car_list:
             new_x  = car.xcor() - STARTING_MOVE_DISTANCE - MOVE_INCREMENT*level
             car.goto(new_x, car.ycor())
-
 
