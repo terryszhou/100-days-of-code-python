@@ -11,6 +11,7 @@ screen.tracer(0)
 
 player = Player()
 car = CarManager()
+scoreboard = Scoreboard()
 
 def turtle_crosser():
     screen.listen()
@@ -18,8 +19,11 @@ def turtle_crosser():
     screen.onkey(player.down, "Down")
     game_is_on = True
     while game_is_on:
-        player.reset()
         screen.update()
+        player.reset()
+        scoreboard.update_scoreboard()
+        if player.ycor() > 280:
+            scoreboard.next_level()
         car.move()
 
 
