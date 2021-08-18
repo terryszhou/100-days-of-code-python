@@ -21,4 +21,9 @@ class Player(Turtle):
     def down(self):
         self.setheading(270)
         new_y = self.ycor() - MOVE_DISTANCE
-        self.goto(self.xcor(), new_y)
+        if self.ycor() > -270:
+            self.goto(self.xcor(), new_y)
+
+    def reset(self):
+        if self.ycor() > 280:
+            self.goto(STARTING_POSITION)

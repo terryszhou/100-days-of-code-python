@@ -18,8 +18,10 @@ def turtle_crosser():
     screen.onkey(player.down, "Down")
     game_is_on = True
     while game_is_on:
+        player.reset()
         screen.update()
         car.move()
+
 
 turtle_crosser()
 

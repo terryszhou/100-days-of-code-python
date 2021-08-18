@@ -17,5 +17,3 @@ class CarManager(Turtle):
     def move(self):
         new_x = self.xcor() - STARTING_MOVE_DISTANCE
         self.goto(new_x, self.ycor())
-
-
