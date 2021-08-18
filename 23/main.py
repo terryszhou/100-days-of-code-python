@@ -22,9 +22,18 @@ def turtle_crosser():
         screen.update()
         player.reset()
         scoreboard.update_scoreboard()
+        car.move()
+        
+        # Detect Next Level
         if player.ycor() > 280:
             scoreboard.next_level()
-        car.move()
+
+        # Detect Car Collision
+        for vehicle in car.car_list:
+            if player.distance(vehicle) < 20:
+                game_is_on = False
+                scoreboard.game_over()
+
 
 
 turtle_crosser()
