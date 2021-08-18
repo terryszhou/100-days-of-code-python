@@ -27,6 +27,7 @@ def turtle_crosser():
         # Detect Next Level
         if player.ycor() > 280:
             scoreboard.next_level()
+            car.speed_up(scoreboard.level)
 
         # Detect Car Collision
         for vehicle in car.car_list:

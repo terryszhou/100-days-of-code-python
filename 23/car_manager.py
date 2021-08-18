@@ -3,7 +3,7 @@ from random import choice, randint
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 5
 
 class CarManager:
     def __init__(self):
@@ -29,3 +29,10 @@ class CarManager:
             if car.xcor() < -310:
                 car.color(choice(COLORS))
                 car.goto(300, randint(-280,281))
+
+    def speed_up(self, level):
+        for car in self.car_list:
+            new_x  = car.xcor() - STARTING_MOVE_DISTANCE - MOVE_INCREMENT*level
+            car.goto(new_x, car.ycor())
+
+
