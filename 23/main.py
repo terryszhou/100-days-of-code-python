@@ -35,8 +35,6 @@ def turtle_crosser():
                 game_is_on = False
                 scoreboard.game_over()
 
-
-
 turtle_crosser()
 
 screen.exitonclick()
