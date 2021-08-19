@@ -11,5 +11,8 @@
 # with open("24/new_file.txt", mode="w") as file:
 #     file.write("New file.")
 
-with open("24/README.md", mode="w") as file:
-    file.write("Test file.")
+# with open("24/README.md", mode="w") as file:
+#     file.write("Test file.")
+
+with open("24/data.txt") as file:
+    print(type(file.read()))
