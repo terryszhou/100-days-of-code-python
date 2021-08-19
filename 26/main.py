@@ -1,4 +1,5 @@
 from random import randint
+import pandas
 
 numbers = [1, 1, 2, 3, 5, 8, 13, 21]
 squared_numbers = [n**2 for n in numbers]
@@ -39,7 +40,24 @@ weather_c = {
 }
 weather_f = {day:(temp_c* 9/5) + 32 for (day,temp_c) in weather_c.items()}
 
+student_dict = {
+    "student": ["Angela", "James", "Lily"],
+    "score": [56, 76, 98]
+}
 
+student_data_frame = pandas.DataFrame(student_dict)
+# for (index, row) in student_data_frame.iterrows():
+#     print(row["student"])
+
+nato_data = pandas.read_csv("nato_phonetic_alphabet.csv")
+nato_dict = {row["letter"]:row["code"] for (index, row) in nato_data.iterrows()}
+
+def nato_converter():
+    user_word = input("Enter a word: ").upper()
+    result = [nato_dict[letter] for letter in user_word]
+    print(result)
+
+nato_converter()
 
 
 
