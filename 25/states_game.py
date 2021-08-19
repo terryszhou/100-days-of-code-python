@@ -5,10 +5,14 @@ screen = turtle.Screen()
 screen.title("U.S. States Game")
 screen.addshape("blank_states_img.gif")
 turtle.shape("blank_states_img.gif")
+pen = turtle.Turtle()
 
 count = 0
 state_dict = {}
+missing_states = []
 data = pandas.read_csv("50_states.csv")
+for state in data["state"]:
+    state_dict[state] = 0
 game_is_on = True
 
 while game_is_on:
@@ -17,15 +21,21 @@ while game_is_on:
     else:
         answer_state = screen.textinput(title=f"{sum(state_dict.values())}/50 States Guessed", prompt="What's another state's name?").title()
     if answer_state in data["state"].tolist():
-        if answer_state not in state_dict:
+        if answer_state in state_dict:
             state_dict[answer_state] = 1
         new_state = data[data["state"] == answer_state]
-        pen = turtle.Turtle()
         pen.hideturtle()
         pen.speed("fastest")
         pen.penup()
         pen.goto((int(new_state["x"]), int(new_state["y"])))
         pen.write(answer_state)
+    if answer_state == "Exit":
+        for state in state_dict:
+            if state_dict[state] == 0:
+                missing_states.append(state)
+                missing_df = pandas.DataFrame(missing_states)
+                missing_df.to_csv("missing_states.csv")
+        break
     if sum(state_dict.values()) == 50:
         game_is_on = False
         pen.goto(0,0)
