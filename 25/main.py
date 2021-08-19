@@ -25,10 +25,35 @@ import pandas
 # print(data[data["temp"] == data["temp"].max()])
 
 # CREATE A DATAFRAME FROM SCRATCH
-data_dict =  {
-    "students": ["Amy", "James", "Angela"],
-    "scores": [76, 56, 65]
-}
+# data_dict =  {
+#     "students": ["Amy", "James", "Angela"],
+#     "scores": [76, 56, 65]
+# }
 
-data = pandas.DataFrame(data_dict)
-data.to_csv("new_data.csv")
+# data = pandas.DataFrame(data_dict)
+# data.to_csv("new_data.csv")
+
+data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+data_dict = {}
+for color in data["Primary Fur Color"]:
+    if color in data_dict:
+        data_dict[color] += 1
+    else:
+        data_dict[color] = 1
+new_dict = {
+    "Fur Color": [],
+    "Count": []
+}
+for i in data_dict:
+    if i != "nan":
+        new_dict["Fur Color"].append(i)
+        new_dict["Count"].append(data_dict[i])
+new_data = pandas.DataFrame(new_dict).dropna()
+new_data.to_csv("new_data.csv")
+
+
+
+
+
+
+
