@@ -1,11 +1,27 @@
-import tkinter
+from tkinter import *
 FONT = ("Arial", 24, "bold")
 
-window = tkinter.Tk()
+window = Tk()
 window.title("My First GUI Program")
 window.minsize(width=500, height=300)
 
-my_label = tkinter.Label(text="I am a label", font=FONT)
+# LABELS - - - - - - - - - - - - - - - - - -
+my_label = Label(text="I am a label", font=FONT)
 my_label.pack()
+
+# TWO WAYS TO MANIPULATE THE KWARGS OF A PRE-CREATED COMPONENT
+# my_label["text"] = "New Text"
+# my_label.config(text="New Text")
+
+# BUTTONS - - - - - - - - - - - - - - - - - -
+def button_clicked():
+    my_label["text"] = input.get()
+
+button = Button(text="Click Me", command=button_clicked)
+button.pack()
+
+# ENTRY - - - - - - - - - - - - - - - - - -
+input = Entry(width=10)
+input.pack()
 
 window.mainloop()
