@@ -7,7 +7,11 @@ window.minsize(width=500, height=300)
 
 # LABELS - - - - - - - - - - - - - - - - - -
 my_label = Label(text="I am a label", font=FONT)
-my_label.pack()
+
+# LAYOUT MANAGERS - - - - - - - - - - - - - - - - - -
+my_label.pack() # <-- approximate placement, takes side arg
+my_label.place(x=0,y=0) # <-- exact placement, takes integers as coordinates
+my_label.grid(column=1, row=1) # <-- placement by grid rows and columns; incompatible with pack
 
 # TWO WAYS TO MANIPULATE THE KWARGS OF A PRE-CREATED COMPONENT
 # my_label["text"] = "New Text"
@@ -24,7 +28,7 @@ button.pack()
 input = Entry(width=10)
 input.pack()
 
-#Text
+# TEXT - - - - - - - - - - - - - - - - - -
 text = Text(height=5, width=30)
 #Puts cursor in textbox.
 text.focus()
@@ -34,21 +38,21 @@ text.insert(END, "Example of multi-line text entry.")
 print(text.get("1.0", END))
 text.pack()
 
-#Spinbox
+# SPINBOX - - - - - - - - - - - - - - - - - -
 def spinbox_used():
     #gets the current value in spinbox.
     print(spinbox.get())
 spinbox = Spinbox(from_=0, to=10, width=5, command=spinbox_used)
 spinbox.pack()
 
-#Scale
+# SCALE - - - - - - - - - - - - - - - - - -
 #Called with current scale value.
 def scale_used(value):
     print(value)
 scale = Scale(from_=0, to=100, command=scale_used)
 scale.pack()
 
-#Checkbutton
+# CHECK BUTTON - - - - - - - - - - - - - - - - - -
 def checkbutton_used():
     #Prints 1 if On button checked, otherwise 0.
     print(checked_state.get())
@@ -58,7 +62,7 @@ checkbutton = Checkbutton(text="Is On?", variable=checked_state, command=checkbu
 checked_state.get()
 checkbutton.pack()
 
-#Radiobutton
+# RADIO BUTTON - - - - - - - - - - - - - - - - - -
 def radio_used():
     print(radio_state.get())
 #Variable to hold on to which radio button value is checked.
@@ -69,7 +73,7 @@ radiobutton1.pack()
 radiobutton2.pack()
 
 
-#Listbox
+# LISTBOX - - - - - - - - - - - - - - - - - -
 def listbox_used(event):
     # Gets current selection from listbox
     print(listbox.get(listbox.curselection()))
