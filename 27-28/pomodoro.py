@@ -19,13 +19,15 @@ def start_timer():
     global reps
     reps += 1
 
-    work_sec = WORK_MIN * 60
-    short_break_sec = SHORT_BREAK_MIN * 60
+    # work_sec = WORK_MIN * 60
+    work_sec = 5
+    # short_break_sec = SHORT_BREAK_MIN * 60
+    short_break_sec = 5
     long_break_sec = LONG_BREAK_MIN * 60
 
     if reps in (1, 3, 5, 7):
         count_down(work_sec)
-        title_label.config(text="WORK!")
+        title_label.config(text="WORK!", fg=GREEN)
     elif reps in (2, 4, 6):
         count_down(short_break_sec)
         title_label.config(text="BREAK!", fg=PINK)
@@ -47,6 +49,8 @@ def count_down(count):
         window.after(1000, count_down, count - 1)
     else:
         start_timer()
+        if reps % 2 == 0:
+            check_marks["text"] += "✓"
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -68,7 +72,7 @@ start_btn.place(x=-60, y=230)
 reset_btn = Button(text="STOP", highlightbackground=YELLOW, fg=PINK)
 reset_btn.place(x=200, y=230)
 
-check_marks = Label(text="✓", fg=GREEN, bg=YELLOW)
-check_marks.place(x=90, y=230)
+check_marks = Label(fg=GREEN, bg=YELLOW)
+check_marks.place(x=80, y=230)
 
 window.mainloop()
