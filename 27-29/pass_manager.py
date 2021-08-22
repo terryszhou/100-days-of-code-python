@@ -1,6 +1,6 @@
 from tkinter import *
-import string
-import random
+from string import *
+from random import choice
 
 # -------------------- CONSTANTS -------------------- #
 FONT = ("Arial", 14, "normal")
@@ -8,15 +8,19 @@ FONT_SMALL = ("Arial", 10, "normal")
 
 # -------------------- PASSWORD GENERATOR -------------------- #
 def generate_pass():
-    random_list = [string.ascii_letters, string.digits, string.punctuation]
+    random_list = [ascii_letters, digits, punctuation]
     random_pass = ""
     for _ in range(6):
-        random_pass += random.choice(random.choice(random_list))
-    print(random_pass)
+        random_pass += choice(choice(random_list))
     password_entry["text"] = random_pass
 
 # -------------------- SAVE PASSWORD -------------------- #
-
+def save_pass():
+    website = website_entry.get()
+    email = email_entry.get()
+    password = password_entry["text"]
+    with open("pass_manager.txt", mode="a") as file:
+        file.write(f"{website} | {email} | {password}\n")
 
 # -------------------- UI SETUP -------------------- #
 window = Tk()
@@ -34,7 +38,7 @@ password_label = Label(text="Password:", font=FONT)
 website_entry = Entry(width=35, justify="center")
 password_entry = Label(width=21, justify="center", bg="#1e1e1e")
 password_button = Button(text="Generate Password", width=15, font=FONT_SMALL, command=generate_pass)
-add_button = Button(text="Add", width=32, justify="center")
+add_button = Button(text="Add", width=32, justify="center", command=save_pass)
 email_entry = Entry(width=35, justify="center")
 
 website_label.grid(column=0, row=1)
