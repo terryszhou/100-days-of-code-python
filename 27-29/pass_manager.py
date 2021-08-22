@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from string import *
 from random import choice
 
@@ -21,10 +22,13 @@ def save_pass():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
-    with open("pass_manager.txt", mode="a") as file:
-        file.write(f"{website} | {email} | {password}\n")
-        website_entry.delete(0, END)
-        password_entry.delete(0, END)
+
+    is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password} \nOkay to save?")
+    if is_okay:
+        with open("pass_manager.txt", mode="a") as file:
+            file.write(f"{website} | {email} | {password}\n")
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
 
 # -------------------- UI SETUP -------------------- #
 window = Tk()
