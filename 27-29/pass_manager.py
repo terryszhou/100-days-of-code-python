@@ -23,12 +23,17 @@ def save_pass():
     email = email_entry.get()
     password = password_entry.get()
 
-    is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password} \nOkay to save?")
-    if is_okay:
-        with open("pass_manager.txt", mode="a") as file:
-            file.write(f"{website} | {email} | {password}\n")
-            website_entry.delete(0, END)
-            password_entry.delete(0, END)
+    if website == "":
+        messagebox.showinfo(title="Website not found", message=f"Please enter a website.")
+    elif password == "":
+        messagebox.showinfo(title="Password} not found", message=f"Please enter a password.")
+    else:
+        is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password} \nOkay to save?")
+        if is_okay:
+            with open("pass_manager.txt", mode="a") as file:
+                file.write(f"{website} | {email} | {password}\n")
+                website_entry.delete(0, END)
+                password_entry.delete(0, END)
 
 # -------------------- UI SETUP -------------------- #
 window = Tk()
