@@ -3,6 +3,7 @@ from tkinter import messagebox
 from string import *
 from random import choice
 import pyperclip
+import json
 
 # -------------------- CONSTANTS -------------------- #
 FONT = ("Arial", 14, "normal")
@@ -24,18 +25,24 @@ def save_pass():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password,
+        }
+    }
 
     if website == "":
         messagebox.showinfo(title="Website not found", message=f"Please enter a website.")
     elif password == "":
         messagebox.showinfo(title="Password} not found", message=f"Please enter a password.")
     else:
-        is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password} \nOkay to save?")
-        if is_okay:
-            with open("pass_manager.txt", mode="a") as file:
-                file.write(f"{website} | {email} | {password}\n")
-                website_entry.delete(0, END)
-                password_entry.delete(0, END)
+        with open("pass_manager.json", "r") as data_file:
+            data = json.load(data_file)
+            data.update(new_data)
+            json.dump(data, data_file, indent=4)
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
 
 # -------------------- UI SETUP -------------------- #
 window = Tk()

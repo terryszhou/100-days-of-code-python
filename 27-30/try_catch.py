@@ -74,4 +74,4 @@ def nato_alpha():
     else:
         print(output_list)
 
-nato_alpha()
+# nato_alpha()
