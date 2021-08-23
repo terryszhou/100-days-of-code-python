@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from string import *
 from random import choice
+import pyperclip
 
 # -------------------- CONSTANTS -------------------- #
 FONT = ("Arial", 14, "normal")
@@ -15,6 +16,7 @@ def generate_pass():
         random_pass += choice(choice(random_list))
     if password_entry.get() != None:
         password_entry.delete(0, END)
+    pyperclip.copy(random_pass)
     password_entry.insert(END, random_pass)
 
 # -------------------- SAVE PASSWORD -------------------- #
