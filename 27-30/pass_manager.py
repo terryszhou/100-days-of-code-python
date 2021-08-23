@@ -37,10 +37,17 @@ def save_pass():
     elif password == "":
         messagebox.showinfo(title="Password} not found", message=f"Please enter a password.")
     else:
-        with open("pass_manager.json", "r") as data_file:
-            data = json.load(data_file)
+        try: 
+            with open("pass_manager.json", "r") as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("pass_manager.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
             data.update(new_data)
-            json.dump(data, data_file, indent=4)
+            with open("pass_manager.json", "w") as data_file:
+                json.dump(data, data_file, indent=4)
+        finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
 
