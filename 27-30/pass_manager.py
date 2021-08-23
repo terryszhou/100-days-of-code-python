@@ -35,7 +35,7 @@ def save_pass():
     if website == "":
         messagebox.showinfo(title="Website not found", message=f"Please enter a website.")
     elif password == "":
-        messagebox.showinfo(title="Password} not found", message=f"Please enter a password.")
+        messagebox.showinfo(title="Password not found", message=f"Please enter a password.")
     else:
         try: 
             with open("pass_manager.json", "r") as data_file:
@@ -50,6 +50,19 @@ def save_pass():
         finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
+# -------------------- SAVE PASSWORD -------------------- #
+def find_password():
+    website = website_entry.get()
+    try:
+        with open("pass_manager.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="No Data File Found")
+    else:
+        if website in data:
+            messagebox.showinfo(title=website, message=f'Email: {data[website]["email"]}\nPassword: {data[website]["password"]}')
+        else:
+            messagebox.showinfo(title=website, message=f"No details for {website} exist.")
 
 # -------------------- UI SETUP -------------------- #
 window = Tk()
@@ -61,25 +74,27 @@ canvas = Canvas(width=200, height=200)
 canvas.create_image(100,100, image=LOGO)
 canvas.grid(column=1, row=0)
 
-website_label = Label(text="Website:", font=FONT)
+website_label = Label(text="Website:")
 website_label.grid(column=0, row=1)
-email_label = Label(text="Email/Username:", font=FONT)
+email_label = Label(text="Email/Username:")
 email_label.grid(column=0, row=2)
-password_label = Label(text="Password:", font=FONT)
+password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
 
-website_entry = Entry(width=35, justify="center")
+website_entry = Entry(width=21)
+website_entry.grid(column=1, row=1)
 website_entry.focus()
-website_entry.grid(column=1, row=1, columnspan=2)
-email_entry = Entry(width=35, justify="center")
+email_entry = Entry(width=38)
 email_entry.insert(0, "terryszhou@gmail.com")
 email_entry.grid(column=1, row=2, columnspan=2)
-password_entry = Entry(width=21, justify="center", bg="#1e1e1e")
+password_entry = Entry(width=21, bg="#1e1e1e")
 password_entry.grid(column=1, row=3)
 
-password_button = Button(text="Generate Password",width=15, font=FONT_SMALL, command=generate_pass)
+search_button = Button(text="Search", width=13, command=find_password)
+search_button.grid(column=2, row=1)
+password_button = Button(text="Generate Password", command=generate_pass)
 password_button.grid(column=2, row=3)
-add_button = Button(text="Add", width=32, justify="center", command=save_pass)
-add_button.grid(column=1, row=5, columnspan=2)
+add_button = Button(text="Add", width=36, command=save_pass)
+add_button.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()
