@@ -7,7 +7,10 @@ import pandas
 BACKGROUND_COLOR = "#B1DDC6"
 LANG_FONT = ("Arial", 40, "italic")
 WORD_FONT = ("Arial", 60, "bold")
-word_data = pandas.read_csv("data/chinese_words.csv")
+try:
+    word_data = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    word_data = pandas.read_csv("data/chinese_words.csv")
 word_dict = word_data.to_dict(orient="records")
 current_card = {}
 
@@ -26,6 +29,12 @@ def flip_card():
     canvas.itemconfig(canvas_card, image=FLASHCARD_BACK)
     canvas.itemconfig(card_title, text="English", fill="white")
     canvas.itemconfig(card_word, text=current_card["translation"],  fill="white")
+
+def update_words():
+    word_dict.remove(current_card)
+    word_frame = pandas.DataFrame(word_dict)
+    word_frame.to_csv("data/words_to_learn.csv")
+
 
 # -------------------- UI SETUP -------------------- #
 window = Tk()
@@ -46,7 +55,7 @@ canvas.grid(column=0, row=0, columnspan=2)
 
 wrong_button = Button(image=WRONG, highlightbackground=BACKGROUND_COLOR, command=next_card)
 wrong_button.grid(column=0, row=1)
-right_button = Button(image=RIGHT, highlightbackground=BACKGROUND_COLOR, command=next_card)
+right_button = Button(image=RIGHT, highlightbackground=BACKGROUND_COLOR, command=lambda:[next_card(), update_words()])
 right_button.grid(column=1, row=1)
 
 next_card()
