@@ -3,7 +3,7 @@ import os
 import smtplib
 import pandas
 import datetime as dt
-from random import choice
+from random import randint
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
@@ -21,7 +21,8 @@ birthday_list = birthday_data.to_dict(orient="records")
 def birthday_mailer():
     for person in birthday_list:
         if person["month"] == MONTH and person["day"] == DAY:
-            with open(choice(["letter_templates/letter_1.txt", "letter_templates/letter_2.txt", "letter_templates/letter_3.txt"])) as letter:
+            # with open(choice(["letter_templates/letter_1.txt", "letter_templates/letter_2.txt", "letter_templates/letter_3.txt"])) as letter:
+            with open(f"letter_templates/letter_{randint(1,3)}.txt") as letter:
                 contents = letter.read()
                 new_contents = contents.replace("[NAME]", person["name"])
             with smtplib.SMTP("smtp.gmail.com") as connection:
