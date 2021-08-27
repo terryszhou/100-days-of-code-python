@@ -14,6 +14,7 @@ OWM_PARAMS = {
 }
 ACCT_SID = os.environ.get("TWILIO_ACCT_SID")
 AUTH_TOKEN = os.environ.get("TWILIO_ACCT_TOKEN")
+PHONE_NUM = "+15406251609"
 
 def owm_tracker():
     res = (requests.get(f"{OWM_ENDPOINT}", params=OWM_PARAMS))
@@ -22,6 +23,14 @@ def owm_tracker():
     for hour in res.json()["hourly"][:12]:
         if hour["weather"][0]["id"] < 700:
             rainy = True
-    if rainy == True: print("Bring an umbrella.")
+    if rainy:
+        client = Client(ACCT_SID, AUTH_TOKEN)
+        message = client.messages \
+            .create(
+                body="It's going to rain today. Remember to bring an ⛱!",
+                from_=PHONE_NUM,
+                to='+19253843787'
+            )
+        print(message.status)
 
-# owm_tracker()
+owm_tracker()
