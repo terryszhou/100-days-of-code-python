@@ -4,8 +4,16 @@ import requests
 
 load_dotenv(find_dotenv())
 
-API_KEY = os.environ.get("WEATHER_API_KEY")
-CITY_NAME = "Austin"
+OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/onecall"
 
-res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={API_KEY}")
-print(res.json())
+owm_params = {
+    "lat": os.environ.get("MY_LAT"),
+    "lon": os.environ.get("MY_LON"),
+    "appid": os.environ.get("WEATHER_API_KEY"),
+    "exclude": "current,minutely,daily"
+}
+
+res = (requests.get(f"{OWM_ENDPOINT}", params=owm_params))
+res.raise_for_status()
+owm_data = res.json()
+print((owm_data))
