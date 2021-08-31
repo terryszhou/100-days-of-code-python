@@ -19,10 +19,15 @@ req_body = {
     "age": 27
 }
 
-headers = {
+app_headers = {
     "x-app-id": APP_ID,
     "x-app-key": APP_KEY
 }
+
+sheety_headers = {
+    "Authorization" : "Basic dGVycnlzemhvdToxNFxsKytkbjM/NjkyMDY3"
+}
+
 SHEETY_ENDPOINT = "https://api.sheety.co/460f379ce0b4e690d10bdc36715fcddf/myWorkouts/workouts"
 
 # - - - - - - - - - - FUNCTIONS - - - - - - - - - - #
@@ -30,19 +35,19 @@ def workout_tracker():
     global req_body
     user_input = input("Tell me what exercises you did: ")
     req_body["query"] = user_input
-    res = req.post(APP_ENDPOINT, req_body, headers=headers)
+    res = req.post(APP_ENDPOINT, req_body, headers=app_headers)
 
     workout_req_body = {
         "workout": {
             'date': TODAY,
             'time': NOW,
-            'exercise': res.json()["exercises"][0]["user_input"],
+            'exercise': res.json()["exercises"][0]["user_input"].capitalize(),
             'duration': res.json()["exercises"][0]["duration_min"],
             'calories': res.json()["exercises"][0]["nf_calories"],
         }
     }
 
-    res_2 = req.post(SHEETY_ENDPOINT, json=workout_req_body)
+    res_2 = req.post(SHEETY_ENDPOINT, json=workout_req_body, headers=sheety_headers)
     print(res_2.text)
 
 workout_tracker()
