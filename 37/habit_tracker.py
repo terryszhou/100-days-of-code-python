@@ -68,5 +68,11 @@ def put_pixel():
 
 # put_pixel()
 
+def delete_pixel():
+    response=requests.delete(f"{pixel_endpoint}/{TODAY}", headers=headers)
+    print(response.text)
+
+# delete_pixel()
+
 
 
