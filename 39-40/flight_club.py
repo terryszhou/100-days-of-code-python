@@ -77,4 +77,4 @@ def flight_search():
                     )
                 print(message.status)
 
-flight_search()
+# flight_search()

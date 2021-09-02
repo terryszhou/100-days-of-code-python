@@ -35,6 +35,7 @@ while game_is_on:
                 missing_states.append(state)
                 missing_df = pandas.DataFrame(missing_states)
                 missing_df.to_csv("missing_states.csv")
+        # missing_states = [state for state in data["state"] if state not in list(state_dict.keys())]
         break
     if sum(state_dict.values()) == 50:
         game_is_on = False

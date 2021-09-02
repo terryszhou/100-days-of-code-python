@@ -3,7 +3,6 @@ import requests
 import os
 from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
-from requests.api import head
 load_dotenv(find_dotenv())
 
 # - - - - - - - - - - SETUP VARIABLES - - - - - - - - - - #
@@ -45,34 +44,36 @@ headers = {
 
 # - - - - - - - - - - FUNCTIONS - - - - - - - - - - #
 def create_pixela_acct():
+    '''Creates a new Pixela Account'''
     response = requests.post(pixela_endpoint, json=user_params)
     print(response.text)
 
 # create_pixela_acct()
 
 def create_pixela_graph():
+    '''Creates a new Pixela Graph for your account'''
     response = requests.post(url=graph_endpoint, json=graph_params, headers=headers)
     print(response.text)
 
 # create_pixela_graph()
 
 def post_pixel():
+    '''Creates a new data pixel for your graph'''
     response = requests.post(url=pixel_endpoint, json=pixel_params, headers=headers)
     print(response.text)
 
 # post_pixel()
 
 def put_pixel():
+    '''Updates a data pixel'''
     response=requests.put(f"{pixel_endpoint}/{TODAY}", json=put_params, headers=headers)
     print(response.text)
 
 # put_pixel()
 
 def delete_pixel():
+    '''Deletes a data pixel'''
     response=requests.delete(f"{pixel_endpoint}/{TODAY}", headers=headers)
     print(response.text)
 
 # delete_pixel()
-
-
-

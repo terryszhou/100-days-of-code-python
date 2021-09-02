@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import messagebox
 from random import choice
 import pandas
 
@@ -35,7 +34,6 @@ def update_words():
     word_frame = pandas.DataFrame(word_dict)
     word_frame.to_csv("data/words_to_learn.csv")
 
-
 # -------------------- UI SETUP -------------------- #
 window = Tk()
 window.title("Chinese Flashcards")
@@ -61,4 +59,3 @@ right_button.grid(column=1, row=1)
 next_card()
 
 window.mainloop()
-

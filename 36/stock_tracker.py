@@ -1,7 +1,7 @@
 # - - - - - - - - - - IMPORT MODULES - - - - - - - - - - #
 import os
-from dotenv import load_dotenv, find_dotenv
 import requests
+from dotenv import load_dotenv, find_dotenv
 from twilio.rest import Client
 
 load_dotenv(find_dotenv())
@@ -14,7 +14,7 @@ STOCK_URL = "https://www.alphavantage.co/query?"
 STOCK_PARAMS = {
     "function": "TIME_SERIES_DAILY_ADJUSTED",
     "symbol": STOCK,
-    "apikey": STOCK_API_KEY
+    "apikey": STOCK_API_KEY,
 }
 
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
@@ -25,6 +25,10 @@ PHONE_NUM = "+15406251609"
 
 # - - - - - - - - - - STOCK FUNCTION - - - - - - - - - - #
 def stock_checker():
+    '''
+    Checks the last few days' percentage change for a given stock. 
+    If above a threshold, texts the change and last three relevant news articles to the user.
+    '''
     res = requests.get(STOCK_URL, params=STOCK_PARAMS).json()
     last_two_days = list(res["Time Series (Daily)"].items())[:2]
     l2d_closing = []
@@ -52,4 +56,4 @@ def stock_checker():
             )
         print(message.status)
 
-stock_checker()
+# stock_checker()

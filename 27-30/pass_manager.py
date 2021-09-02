@@ -5,10 +5,6 @@ from random import choice
 import pyperclip
 import json
 
-# -------------------- CONSTANTS -------------------- #
-FONT = ("Arial", 14, "normal")
-FONT_SMALL = ("Arial", 10, "normal")
-
 # -------------------- PASSWORD GENERATOR -------------------- #
 def generate_pass():
     random_list = [ascii_letters, digits, punctuation]
@@ -50,6 +46,7 @@ def save_pass():
         finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
+
 # -------------------- SAVE PASSWORD -------------------- #
 def find_password():
     website = website_entry.get()

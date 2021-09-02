@@ -104,7 +104,7 @@
 import requests
 import html
 
-response = requests.get("https://opentdb.com/api.php?amount=10&type=boolean")
+response = requests.get("https://opentdb.com/api.php?amount=10&type=boolean&category=18")
 question_data = response.json()["results"]
 
 # # METHOD 1: TUPLE

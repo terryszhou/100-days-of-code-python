@@ -11,7 +11,7 @@ APP_ID = os.environ.get("NUTRITIONIX_ID")
 APP_KEY = os.environ.get("NUTRITIONIX_API_KEY")
 TODAY = datetime.now().strftime("%d/%m/%Y")
 NOW = datetime.now().strftime("%H:%M:%S")
-req_body = {
+REQ_BODY = {
     "query": "",
     "gender": "male",
     "weight_kg": 79.4,
@@ -19,12 +19,12 @@ req_body = {
     "age": 27
 }
 
-app_headers = {
+APP_HEADERS = {
     "x-app-id": APP_ID,
     "x-app-key": APP_KEY
 }
 
-sheety_headers = {
+SHEETY_HEADERS = {
     "Authorization" : "Basic dGVycnlzemhvdToxNFxsKytkbjM/NjkyMDY3"
 }
 
@@ -32,23 +32,21 @@ SHEETY_ENDPOINT = "https://api.sheety.co/460f379ce0b4e690d10bdc36715fcddf/myWork
 
 # - - - - - - - - - - FUNCTIONS - - - - - - - - - - #
 def workout_tracker():
-    global req_body
+    global REQ_BODY
     user_input = input("Tell me what exercises you did: ")
-    req_body["query"] = user_input
-    res = req.post(APP_ENDPOINT, req_body, headers=app_headers)
-
+    REQ_BODY["query"] = user_input
+    workout_res = req.post(APP_ENDPOINT, REQ_BODY, headers=APP_HEADERS)
     workout_req_body = {
         "workout": {
             'date': TODAY,
             'time': NOW,
-            'exercise': res.json()["exercises"][0]["user_input"].capitalize(),
-            'duration': res.json()["exercises"][0]["duration_min"],
-            'calories': res.json()["exercises"][0]["nf_calories"],
+            'exercise': workout_res.json()["exercises"][0]["user_input"].capitalize(),
+            'duration': workout_res.json()["exercises"][0]["duration_min"],
+            'calories': workout_res.json()["exercises"][0]["nf_calories"],
         }
     }
-
-    res_2 = req.post(SHEETY_ENDPOINT, json=workout_req_body, headers=sheety_headers)
-    print(res_2.text)
+    sheety_res = req.post(SHEETY_ENDPOINT, json=workout_req_body, headers=SHEETY_HEADERS)
+    print(sheety_res.text)
 
 workout_tracker()
 

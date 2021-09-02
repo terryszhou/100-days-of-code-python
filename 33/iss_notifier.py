@@ -65,4 +65,4 @@ def iss_notifier():
                     msg=f"Subject: The ISS is nearby!\n\nISS is currently at {(iss_lat, iss_lng)}."
                 )
 
-iss_notifier()
+# iss_notifier()

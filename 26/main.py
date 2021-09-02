@@ -58,7 +58,3 @@ def nato_converter():
     print(result)
 
 nato_converter()
-
-
-
-
